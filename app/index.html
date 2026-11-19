@@ -9,114 +9,122 @@
 </head>
 <body>
 <header class="top">
-  <div class="brand">
-    <p class="kicker">GRAND THEFT AUTO VI &middot; PLAYSTATION 5 &middot; OFFLINE GUIDE</p>
-    <h1>Leonida Platinum</h1>
-    <p class="sub">Every one of the 55 trophies — official names, descriptions &amp; grades — with a cited guide, a roadmap to the platinum, and a tracker that saves in your browser.</p>
-  </div>
-  <div class="progress-card" id="progressCard">
-    <p class="big"><span id="earnedCount">0</span><span class="of"> / 55</span></p>
-    <p class="big-label">trophies earned</p>
-    <div class="bar"><div class="bar-fill" id="barFill" style="width:0%"></div></div>
-    <p class="counts" id="gradeCounts">Platinum 0/1 &middot; Gold 0/2 &middot; Silver 0/6 &middot; Bronze 0/46</p>
-    <p class="meta">~200 hrs &middot; Difficulty 4/10 &middot; 1 playthrough &middot; 0 online trophies &middot; 28 hidden</p>
+  <div class="top-inner">
+    <div class="brand">
+      <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; Offline Guide</p>
+      <h1>Leonida <span class="platinum-word">Platinum</span></h1>
+      <p class="sub">Every one of the 55 trophies — official names, descriptions &amp; grades — with a cited guide, a roadmap to the platinum, and a tracker that saves in your browser.</p>
+    </div>
+    <div class="progress-card" id="progressCard">
+      <div class="progress-top">
+        <p class="big"><span id="earnedCount">0</span><span class="of"> / 55</span></p>
+        <span class="pct" id="progressPct">0%</span>
+      </div>
+      <p class="big-label">trophies earned</p>
+      <div class="bar"><div class="bar-fill" id="barFill" style="width:0%"></div></div>
+      <p class="counts" id="gradeCounts">Platinum 0/1 &middot; Gold 0/2 &middot; Silver 0/6 &middot; Bronze 0/46</p>
+      <p class="meta">~200 hrs &middot; Difficulty 4/10 &middot; 1 playthrough &middot; 0 online trophies &middot; 28 hidden</p>
+    </div>
   </div>
 </header>
 
-<div class="missable-banner" id="missableBanner">
-  <strong>&#9888; ONE TROPHY MAY BE MISSABLE:</strong>
-  <span><b>Positive Mental Attitude</b> — meditate at every spot. Do the Chapter 1 meditation at Jason&rsquo;s house (Lucia on the balcony, morning after &ldquo;Down to Earth&rdquo;) before Chapter 1 ends. It is gone afterwards, and it is still unconfirmed whether it is required — do it to be safe.</span>
-  <button type="button" id="showMissable">See the missable trophy</button>
-</div>
+<div class="page">
+  <div class="missable-banner" id="missableBanner">
+    <span class="warn-icon" aria-hidden="true">!</span>
+    <span class="banner-text"><strong>ONE TROPHY MAY BE MISSABLE:</strong>
+    <b>Positive Mental Attitude</b> — meditate at every spot. Do the Chapter 1 meditation at Jason&rsquo;s house (Lucia on the balcony, morning after &ldquo;Down to Earth&rdquo;) before Chapter 1 ends. It is gone afterwards, and it is still unconfirmed whether it is required — do it to be safe.</span>
+    <button type="button" id="showMissable">See the missable trophy</button>
+  </div>
 
-<nav class="tabs" aria-label="Views">
-  <button type="button" class="tab active" data-view="checklist">Checklist</button>
-  <button type="button" class="tab" data-view="roadmap">Roadmap to Platinum</button>
-  <button type="button" class="tab" data-view="missable">Missable trophies</button>
-  <button type="button" class="tab" data-view="about">Sources &amp; how to use</button>
-</nav>
+  <nav class="tabs" aria-label="Views">
+    <button type="button" class="tab active" data-view="checklist">Checklist</button>
+    <button type="button" class="tab" data-view="roadmap">Roadmap to Platinum</button>
+    <button type="button" class="tab" data-view="missable">Missable trophies</button>
+    <button type="button" class="tab" data-view="about">Sources &amp; how to use</button>
+  </nav>
 
-<main>
-  <section id="view-checklist" class="view active">
-    <div class="controls">
-      <label class="search">Search <input id="search" type="search" placeholder="Trophy name, mission, or keyword…"></label>
-      <label>Grade <select id="gradeFilter">
-        <option value="all">All grades</option><option value="platinum">Platinum</option>
-        <option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option>
-      </select></label>
-      <label>Show <select id="earnedFilter">
-        <option value="all">All trophies</option><option value="earned">Earned only</option><option value="todo">Not earned yet</option>
-      </select></label>
-      <label class="spoiler"><input id="spoilerToggle" type="checkbox"> Hide story spoilers</label>
-      <button id="exportBtn" type="button">Export progress</button>
-      <label class="importBtn">Import progress <input id="importFile" type="file" accept="application/json,.json"></label>
-      <button id="resetBtn" type="button" class="ghost">Reset</button>
-    </div>
-    <div class="kind-row" id="kindRow" aria-label="Filter by kind"></div>
-    <p class="result-line" id="resultLine"></p>
-    <div class="layout">
-      <div class="list-wrap">
-        <ol class="trophy-list" id="trophyList"></ol>
-        <p class="empty" id="emptyState" hidden>No trophies match these filters. Try clearing the search or picking another kind — there are no online trophies in this game at all, so the Online filter is always empty.</p>
+  <main>
+    <section id="view-checklist" class="view active">
+      <div class="controls">
+        <label class="search">Search <input id="search" type="search" placeholder="Trophy name, mission, or keyword…"></label>
+        <label>Grade <select id="gradeFilter">
+          <option value="all">All grades</option><option value="platinum">Platinum</option>
+          <option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option>
+        </select></label>
+        <label>Show <select id="earnedFilter">
+          <option value="all">All trophies</option><option value="earned">Earned only</option><option value="todo">Not earned yet</option>
+        </select></label>
+        <label class="spoiler"><input id="spoilerToggle" type="checkbox"> Hide story spoilers</label>
+        <button id="exportBtn" type="button">Export progress</button>
+        <label class="importBtn">Import progress <input id="importFile" type="file" accept="application/json,.json"></label>
+        <button id="resetBtn" type="button" class="ghost">Reset</button>
       </div>
-      <aside class="detail" id="detailPanel" aria-live="polite"></aside>
-    </div>
-  </section>
+      <div class="kind-row" id="kindRow" aria-label="Filter by kind"></div>
+      <p class="result-line" id="resultLine"></p>
+      <div class="layout">
+        <div class="list-wrap">
+          <ol class="trophy-list" id="trophyList"></ol>
+          <p class="empty" id="emptyState" hidden>No trophies match these filters. Try clearing the search or picking another kind — there are no online trophies in this game at all, so the Online filter is always empty.</p>
+        </div>
+        <aside class="detail" id="detailPanel" aria-live="polite"></aside>
+      </div>
+    </section>
 
-  <section id="view-roadmap" class="view">
-    <h2>Roadmap to the platinum — Vice Got a Price!</h2>
-    <p class="lead">Three stages, one playthrough, about 200 hours. Nothing on the 100% checklist is missable, and everything is still doable in free-roam after the story.</p>
-    <div class="stages" id="roadmapStages"></div>
-    <h3>What each stage earns</h3>
-    <table class="roadmap-table">
-      <thead><tr><th>Stage</th><th>Trophies</th><th>Count</th><th>Key numbers</th></tr></thead>
-      <tbody>
-        <tr><td>1 — Story</td><td>All 12 story trophies + side strands that open along the way</td><td>12 story</td><td>5 chapters, 60–80 hrs; save at the start &amp; end of each chapter</td></tr>
-        <tr><td>2 — 100% checklist</td><td>A Long Road (gold) + the grind trophies</td><td>~30</td><td>200/277 vehicles, 100/255 animals, 70/80 challenges, 300 stunts, 42 shooting golds, 8 vaults, 39 gang ops</td></tr>
-        <tr><td>3 — Cleanup</td><td>Strangers &amp; Freaks + the last stragglers</td><td>~13</td><td>8 stranger strands; the 2 unconfirmed trophies last</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Counts are from the official descriptions and PowerPyx&rsquo;s roadmap; the checklist itself only opens after the story, under Progress &gt; Stats &gt; 100% Completion.</p>
-  </section>
+    <section id="view-roadmap" class="view">
+      <h2>Roadmap to the platinum — Vice Got a Price!</h2>
+      <p class="lead">Three stages, one playthrough, about 200 hours. Nothing on the 100% checklist is missable, and everything is still doable in free-roam after the story.</p>
+      <div class="stages" id="roadmapStages"></div>
+      <h3>What each stage earns</h3>
+      <table class="roadmap-table">
+        <thead><tr><th>Stage</th><th>Trophies</th><th>Count</th><th>Key numbers</th></tr></thead>
+        <tbody>
+          <tr><td>1 — Story</td><td>All 12 story trophies + side strands that open along the way</td><td>12 story</td><td>5 chapters, 60–80 hrs; save at the start &amp; end of each chapter</td></tr>
+          <tr><td>2 — 100% checklist</td><td>A Long Road (gold) + the grind trophies</td><td>~30</td><td>200/277 vehicles, 100/255 animals, 70/80 challenges, 300 stunts, 42 shooting golds, 8 vaults, 39 gang ops</td></tr>
+          <tr><td>3 — Cleanup</td><td>Strangers &amp; Freaks + the last stragglers</td><td>~13</td><td>8 stranger strands; the 2 unconfirmed trophies last</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Counts are from the official descriptions and PowerPyx&rsquo;s roadmap; the checklist itself only opens after the story, under Progress &gt; Stats &gt; 100% Completion.</p>
+    </section>
 
-  <section id="view-missable" class="view">
-    <h2>Missable trophies</h2>
-    <p class="lead">Built from the official descriptions and checked against PowerPyx, GTABase and Push Square: <strong>only one trophy may be missable</strong>, and it is easy to protect.</p>
-    <div id="missableList"></div>
-    <h3>Things that look missable but are not</h3>
-    <ul class="safe-list">
-      <li><b>All 12 story trophies</b> — automatic, none can be missed; chapter trophies may pop a little late, after the first mission of the next chapter.</li>
-      <li><b>Kenton&rsquo;s strand</b> — he goes quiet after Chapter 1 and returns in Chapters 2–3; all 7 shipwrecks stay doable.</li>
-      <li><b>Optional missions that disappear</b> — there are several hundred, and 100% needs any 100, so a few expiring ones do not matter.</li>
-      <li><b>Quest givers who go away mid-story</b> — every trophy-related giver comes back and stays after the story.</li>
-      <li><b>Fences that close for good</b> — none of them has a trophy quest; new fences unlock as you go.</li>
-      <li><b>Magazine collectibles in story buildings</b> — they also spawn elsewhere, and no trophy needs all of them.</li>
-      <li><b>Hourglass (timed) quests</b> — none is tied to a trophy.</li>
-      <li><b>Your criminal profile</b> — Irredeemable is permanent and makes police more aggressive, but it locks out no trophy; still, avoid it.</li>
-    </ul>
-    <p class="note">Save advice from PowerPyx: 15 manual save slots + 1 autosave, no mission replay — keep a save at the start and end of each chapter (10 saves), and rotate the other 5 during free-roam cleanup. Cheats disable trophies and saving, so keep them off your platinum file.</p>
-  </section>
+    <section id="view-missable" class="view">
+      <h2>Missable trophies</h2>
+      <p class="lead">Built from the official descriptions and checked against PowerPyx, GTABase and Push Square: <strong>only one trophy may be missable</strong>, and it is easy to protect.</p>
+      <div id="missableList"></div>
+      <h3>Things that look missable but are not</h3>
+      <ul class="safe-list">
+        <li><b>All 12 story trophies</b> — automatic, none can be missed; chapter trophies may pop a little late, after the first mission of the next chapter.</li>
+        <li><b>Kenton&rsquo;s strand</b> — he goes quiet after Chapter 1 and returns in Chapters 2–3; all 7 shipwrecks stay doable.</li>
+        <li><b>Optional missions that disappear</b> — there are several hundred, and 100% needs any 100, so a few expiring ones do not matter.</li>
+        <li><b>Quest givers who go away mid-story</b> — every trophy-related giver comes back and stays after the story.</li>
+        <li><b>Fences that close for good</b> — none of them has a trophy quest; new fences unlock as you go.</li>
+        <li><b>Magazine collectibles in story buildings</b> — they also spawn elsewhere, and no trophy needs all of them.</li>
+        <li><b>Hourglass (timed) quests</b> — none is tied to a trophy.</li>
+        <li><b>Your criminal profile</b> — Irredeemable is permanent and makes police more aggressive, but it locks out no trophy; still, avoid it.</li>
+      </ul>
+      <p class="note">Save advice from PowerPyx: 15 manual save slots + 1 autosave, no mission replay — keep a save at the start and end of each chapter (10 saves), and rotate the other 5 during free-roam cleanup. Cheats disable trophies and saving, so keep them off your platinum file.</p>
+    </section>
 
-  <section id="view-about" class="view">
-    <h2>Sources &amp; how to use this guide</h2>
-    <h3>Where every fact comes from</h3>
-    <ul class="source-list">
-      <li><b>Official names, descriptions &amp; grades</b> — Exophase&rsquo;s GTA VI trophy list and PSNProfiles&rsquo; trophy page, which agree on all 55 names, descriptions and grades.</li>
-      <li><b>Methods, counts &amp; the missable warning</b> — PowerPyx&rsquo;s GTA 6 Trophy Guide &amp; Roadmap (played from the released game), cross-checked against Sixshore&rsquo;s trophy list and GTABase.</li>
-      <li><b>Time &amp; difficulty</b> — PowerPyx: about 200 hours, difficulty 4/10, one playthrough; Push Square: 250+ hours.</li>
-      <li><b>Every guide on this page is written in our own words</b> and names its sources beside it. Where PowerPyx marks a trophy unknown (Bad Luck, I Guess; The Truth Is Out There), this guide says so instead of inventing a method.</li>
-    </ul>
-    <h3>How the tracker works</h3>
-    <ul class="source-list">
-      <li>Tick a trophy and it is saved in this browser (localStorage) — close the page and your progress is still here.</li>
-      <li><b>Export progress</b> downloads your ticks as a JSON file; <b>Import progress</b> reads one back.</li>
-      <li><b>Hide story spoilers</b> masks the names and descriptions of story trophies you have not earned yet; ticking one reveals it.</li>
-      <li>Filters: by kind (story, missable, collectibles, activities, side, crime, exploration — and online, which this game has none of), by grade, by earned state, and by search.</li>
-      <li>This app is fully offline: it loads only its own files and makes no network request. Source links open only if you click them.</li>
-    </ul>
-    <p class="note">Fan-made guide. Not affiliated with Rockstar Games. No Rockstar logo, artwork or game screenshots are used anywhere in this guide.</p>
-  </section>
-</main>
+    <section id="view-about" class="view">
+      <h2>Sources &amp; how to use this guide</h2>
+      <h3>Where every fact comes from</h3>
+      <ul class="source-list">
+        <li><b>Official names, descriptions &amp; grades</b> — Exophase&rsquo;s GTA VI trophy list and PSNProfiles&rsquo; trophy page, which agree on all 55 names, descriptions and grades.</li>
+        <li><b>Methods, counts &amp; the missable warning</b> — PowerPyx&rsquo;s GTA 6 Trophy Guide &amp; Roadmap (played from the released game), cross-checked against Sixshore&rsquo;s trophy list and GTABase.</li>
+        <li><b>Time &amp; difficulty</b> — PowerPyx: about 200 hours, difficulty 4/10, one playthrough; Push Square: 250+ hours.</li>
+        <li><b>Every guide on this page is written in our own words</b> and names its sources beside it. Where PowerPyx marks a trophy unknown (Bad Luck, I Guess; The Truth Is Out There), this guide says so instead of inventing a method.</li>
+      </ul>
+      <h3>How the tracker works</h3>
+      <ul class="source-list">
+        <li>Tick a trophy and it is saved in this browser (localStorage) — close the page and your progress is still here.</li>
+        <li><b>Export progress</b> downloads your ticks as a JSON file; <b>Import progress</b> reads one back.</li>
+        <li><b>Hide story spoilers</b> masks the names and descriptions of story trophies you have not earned yet; ticking one reveals it.</li>
+        <li>Filters: by kind (story, missable, collectibles, activities, side, crime, exploration — and online, which this game has none of), by grade, by earned state, and by search.</li>
+        <li>This app is fully offline: it loads only its own files and makes no network request. Source links open only if you click them.</li>
+      </ul>
+      <p class="note">Fan-made guide. Not affiliated with Rockstar Games. No Rockstar logo, artwork or game screenshots are used anywhere in this guide.</p>
+    </section>
+  </main>
+</div>
 
 <footer>
   <p>Leonida Platinum — an offline, fan-made GTA VI trophy guide &amp; tracker. Official trophy names, descriptions and grades as published by PlayStation (via Exophase / PSNProfiles). Guides in our own words, each citing its sources. No online trophies exist in this game.</p>

@@ -64,7 +64,11 @@ function renderKinds() {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'kind-btn' + (kind === key ? ' active' : '');
-    b.textContent = `${label} (${kindCount(key)})`;
+    b.append(document.createTextNode(label + ' '));
+    const count = document.createElement('span');
+    count.className = 'kind-count';
+    count.textContent = `(${kindCount(key)})`;
+    b.append(count);
     b.addEventListener('click', () => { kind = key; renderKinds(); renderList(); });
     kindRowEl.append(b);
   }
@@ -90,9 +94,20 @@ function visibleTrophies() {
 function renderProgress() {
   document.getElementById('earnedCount').textContent = earned.size;
   document.getElementById('barFill').style.width = `${(earned.size / trophies.length) * 100}%`;
+  const pctEl = document.getElementById('progressPct');
+  if (pctEl) pctEl.textContent = `${Math.round((earned.size / trophies.length) * 100)}%`;
   const byGrade = (g) => trophies.filter((t) => t.grade === g && earned.has(t.name)).length;
-  document.getElementById('gradeCounts').textContent =
-    `Platinum ${byGrade('platinum')}/1 · Gold ${byGrade('gold')}/2 · Silver ${byGrade('silver')}/6 · Bronze ${byGrade('bronze')}/46`;
+  const totals = { platinum: 1, gold: 2, silver: 6, bronze: 46 };
+  const countsEl = document.getElementById('gradeCounts');
+  countsEl.replaceChildren();
+  for (const g of ['platinum', 'gold', 'silver', 'bronze']) {
+    const pill = document.createElement('span');
+    pill.className = 'grade-stat';
+    const dot = document.createElement('span');
+    dot.className = `dot dot-${g}`;
+    pill.append(dot, document.createTextNode(`${gradeLabel(g)} ${byGrade(g)}/${totals[g]}`));
+    countsEl.append(pill);
+  }
 }
 
 function renderList() {
@@ -104,6 +119,7 @@ function renderList() {
     : `Showing ${shown.length} of ${trophies.length} trophies · ${earned.size} earned`;
   for (const t of shown) {
     const li = document.createElement('li');
+    li.classList.add(`grade-${t.grade}`);
     if (earned.has(t.name)) li.classList.add('earned');
     if (selectedId === t.id) li.classList.add('selected');
     const box = document.createElement('input');
@@ -214,7 +230,7 @@ function renderDetail() {
   }
   detailEl.append(ul);
   const done = document.createElement('p');
-  done.className = 'label';
+  done.className = 'label earned-status ' + (earned.has(t.name) ? 'is-earned' : 'is-todo');
   done.textContent = earned.has(t.name) ? '✓ EARNED — ticked in your tracker' : 'NOT EARNED YET — tick the box to mark it done';
   detailEl.append(done);
 }
@@ -225,6 +241,9 @@ function renderRoadmap() {
   for (const s of roadmap) {
     const card = document.createElement('article');
     card.className = 'stage-card';
+    const num = document.createElement('span');
+    num.className = 'step-num';
+    num.textContent = s.stage;
     const h = document.createElement('h4');
     h.textContent = s.title;
     const time = document.createElement('p');
@@ -232,7 +251,7 @@ function renderRoadmap() {
     time.textContent = s.time;
     const p = document.createElement('p');
     p.textContent = s.text;
-    card.append(h, time, p);
+    card.append(num, h, time, p);
     wrap.append(card);
   }
 }
